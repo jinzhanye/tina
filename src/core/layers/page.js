@@ -45,9 +45,11 @@ class Page extends Unit {
     options = this.mix(PAGE_INITIAL_OPTIONS, [...BUILTIN_MIXINS, ...this._mixins, ...(options.mixins || []), options])
 
     // initilize data
+    // todo sigmund data ??
     options.data = initializeData(options.adapters.data, options.data)
 
     // create wx-Page options
+    // 改变methods、lifecircles的上下文
     let page = {
       data: options.adapters.data.toPlainObject(options.data()),
       ...wxOptionsGenerator.methods(options.methods),
@@ -58,6 +60,7 @@ class Page extends Unit {
     // !important: this hook is added to wx-Page directly, but not Tina-Page
     page = prependHooks(page, {
       onLoad () {
+        // this 是微信的 Page 实例
         let instance = new Page({ options, $source: this })
         // create bi-direction links
         this.__tina_instance__ = instance

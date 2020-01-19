@@ -2,6 +2,7 @@ import map from 'just-map-object'
 import { fromPairs } from './functions'
 
 // generate methods for wx-Component
+// 将 methods 的上下文改成 tina 实例对象
 export function methods (object) {
   return map(object || {}, (name, method) => function handler (...args) {
     let context = this.__tina_instance__

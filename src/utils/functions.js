@@ -38,6 +38,7 @@ export function values (object) {
   return Object.keys(object).map((key) => object[key])
 }
 
+// 数组转对象
 export function fromPairs (pairs = []) {
   let object = {}
   pairs.forEach(([key, value]) => object[key] = value)
